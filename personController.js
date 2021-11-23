@@ -1,5 +1,6 @@
 const Person = require('./personModel')
 const { getPostData } = require('./utils')
+const { isUUID } = require('./entities')
 
 
 async function getPersons(req, res) {
@@ -14,6 +15,11 @@ async function getPersons(req, res) {
 
 async function getPerson(req, res, id) {
     try {
+        const isUUIDValid = isUUID(id)
+        if (!isUUIDValid) {
+            res.writeHead(400, { 'Content-Type': 'application/json'})
+            res.end(JSON.stringify({message: 'Id is not correct'}))
+        }
         const person = await Person.findById(id)
         if (!person) {
             res.writeHead(404, { 'Content-Type': 'application/json'})
@@ -44,6 +50,11 @@ async function createPerson(req, res) {
 
 async function updatePerson(req, res, id) {
     try {
+        const isUUIDValid = isUUID(id)
+        if (!isUUIDValid) {
+            res.writeHead(400, { 'Content-Type': 'application/json'})
+            res.end(JSON.stringify({message: 'Id is not correct'}))
+        }
         const person = await Person.findById(id)
 
         if (!person) {
@@ -66,6 +77,11 @@ async function updatePerson(req, res, id) {
 
 async function  deletePerson(req, res, id) {
     try {
+        const isUUIDValid = isUUID(id)
+        if (!isUUIDValid) {
+            res.writeHead(400, { 'Content-Type': 'application/json'})
+            res.end(JSON.stringify({message: 'Id is not correct'}))
+        }
         const person = await Person.findById(id)
         if (!person) {
             res.writeHead(404, { 'Content-Type': 'application/json'})
