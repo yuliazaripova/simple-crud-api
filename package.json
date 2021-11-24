@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "start:dev": "nodemon server.js",
+    "build": "webpack --config webpack.config.js",
+    "start:prod": "webpack --config webpack.config.js; node dist/main.js",
     "test": "jest"
   },
   "repository": {
@@ -19,7 +21,9 @@
   },
   "homepage": "https://github.com/yuliazaripova/simple-crud-api#readme",
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "webpack": "^5.64.2",
+    "webpack-cli": "^4.9.1"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
