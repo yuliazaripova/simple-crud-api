@@ -8,7 +8,8 @@
     "start:dev": "nodemon server.js",
     "build": "webpack --config webpack.config.js",
     "start:prod": "webpack --config webpack.config.js; node dist/main.js",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint . --ext .js --fix"
   },
   "repository": {
     "type": "git",
@@ -21,12 +22,18 @@
   },
   "homepage": "https://github.com/yuliazaripova/simple-crud-api#readme",
   "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15",
+    "prettier": "2.4.1",
     "webpack": "^5.64.2",
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
+    "eslint-config-prettier": "^8.3.0",
     "jest": "^27.3.1",
     "supertest": "^6.1.6",
     "uuid": "^8.3.2"

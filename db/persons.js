@@ -1,5 +1,5 @@
-let persons = []
+const persons = [];
 
 module.exports = {
-    persons
-}
+  persons,
+};
