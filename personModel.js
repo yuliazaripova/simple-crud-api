@@ -1,6 +1,5 @@
-const persons = require('./db/persons.json')
 const { v4: uuidv4 } = require('uuid')
-const { writeDataToFile } = require('./utils')
+const { persons } = require('./db/persons')
 
 function findAll() {
     return new Promise((resolve, reject) => {
@@ -19,7 +18,6 @@ function createPerson(person) {
     return new Promise((resolve, reject) => {
         const newPerson = {...person, id: uuidv4()}
         persons.push(newPerson)
-        writeDataToFile('./db/persons.json', persons)
         resolve(newPerson)
     })
 }
@@ -28,15 +26,15 @@ function updatePerson(id, person) {
     return new Promise((resolve, reject) => {
         const index = persons.findIndex(person => person.id === id)
         persons[index] = {id, ...person}
-        writeDataToFile('./db/persons.json', persons)
+        persons.push(person)
         resolve(persons[index])
     })
 }
 
 function deletePerson(id) {
     return new Promise((resolve, reject) => {
-        const _persons = persons.filter((person) => person.id !== id)
-        writeDataToFile('./db/persons.json', _persons)
+        const index = persons.indexOf(id)
+        persons.splice(index, 1)
         resolve()
     })
 }
