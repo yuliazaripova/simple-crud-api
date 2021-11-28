@@ -33,8 +33,10 @@ function updatePerson(id, person) {
 
 function deletePerson(id) {
   return new Promise((resolve, reject) => {
-    const index = persons.indexOf(id);
-    persons.splice(index, 1);
+    const index = persons.findIndex((i) => i.id === id);
+    if (index > -1) {
+      persons.splice(index, 1);
+    }
     resolve();
   });
 }
