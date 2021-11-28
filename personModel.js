@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 const { v4: uuidv4 } = require('uuid');
 const { persons } = require('./db/persons');
 
@@ -26,7 +28,6 @@ function updatePerson(id, person) {
   return new Promise((resolve, reject) => {
     const index = persons.findIndex((person) => person.id === id);
     persons[index] = { id, ...person };
-    persons.push(person);
     resolve(persons[index]);
   });
 }
